@@ -14,15 +14,30 @@ This project analyzes the Instacart Online Grocery Shopping Dataset to:
 
 **Instacart Online Grocery Shopping Dataset 2017**
 
-- Source: Kaggle Instacart Market Basket Analysis dataset
+- Source: [Kaggle Instacart Market Basket Analysis](https://www.kaggle.com/datasets/psparks/instacart-market-basket-analysis)
 - Unit of analysis: orders (baskets) and order lines (order-product pairs)
+- Scale: ~3.4M orders, ~32M order-product lines, ~50K products
 
 ## Checkpoints
 
-- [x] Checkpoint 1: Dataset selection and EDA
-- [ ] Checkpoint 2: Frequent itemset mining
-- [ ] Checkpoint 3: Sequential pattern mining
-- [ ] Final Report
+| Checkpoint | Description | Due Date | Status |
+|------------|-------------|----------|--------|
+| 1 | Dataset Comparison, Selection, and EDA | Feb 12 | ✅ Complete |
+| 2 | Research Question Formation | Mar 5 | 🔲 Pending |
+| 3 | Study of Research Questions (Deep Dive) | Apr 2 | 🔲 Pending |
+| 4 | Project Showcase | Apr 21 | 🔲 Pending |
+| 5 | Final Deliverable | Apr 27 | 🔲 Pending |
+
+## Repository Structure
+
+```
+├── README.md
+├── notebooks/
+│   └── checkpoint_1.ipynb   # Dataset selection and EDA
+├── src/                     # Source code (future checkpoints)
+├── data/                    # Local data (gitignored)
+└── .gitignore
+```
 
 ## License
 
