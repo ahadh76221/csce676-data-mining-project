@@ -23,8 +23,8 @@ This project analyzes the Instacart Online Grocery Shopping Dataset to:
 | Checkpoint | Description | Due Date | Status |
 |------------|-------------|----------|--------|
 | 1 | Dataset Comparison, Selection, and EDA | Feb 12 | ✅ Complete |
-| 2 | Research Question Formation | Mar 5 | 🔲 Pending |
-| 3 | Study of Research Questions (Deep Dive) | Apr 2 | 🔲 Pending |
+| 2 | Research Question Formation | Mar 17 | ✅ Complete |
+| 3 | ~~Study of Research Questions (Deep Dive)~~ | ~~Apr 2~~ | ❌ Canceled |
 | 4 | Project Showcase | Apr 21 | 🔲 Pending |
 | 5 | Final Deliverable | Apr 27 | 🔲 Pending |
 
@@ -33,7 +33,8 @@ This project analyzes the Instacart Online Grocery Shopping Dataset to:
 ```
 ├── README.md
 ├── notebooks/
-│   └── checkpoint_1.ipynb   # Dataset selection and EDA
+│   ├── checkpoint_1.ipynb   # Dataset selection and EDA
+│   └── checkpoint_2.ipynb   # Research question formation
 ├── src/                     # Source code (future checkpoints)
 ├── data/                    # Local data (gitignored)
 └── .gitignore
