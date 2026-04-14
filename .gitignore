@@ -1,5 +1,4 @@
-# Data (large; symlinked locally; do not track)
-data/
+# Data: keep parquet (compact, committed); ignore raw CSVs
 *.csv
 
 # Build helpers / scratch

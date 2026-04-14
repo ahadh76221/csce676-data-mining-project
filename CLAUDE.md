@@ -16,7 +16,7 @@ All work lives in `notebooks/`. There is no `src/` or test suite yet.
 
 - `notebooks/project_checkpoint_1.ipynb` — Dataset selection and EDA (Instacart chosen over alternatives)
 - `notebooks/project_checkpoint_2.ipynb` — Research questions, FP-Growth pilot, PrefixSpan pilot, unit tests
-- `data/` — Local data directory, **gitignored**; download from [Kaggle](https://www.kaggle.com/datasets/psparks/instacart-market-basket-analysis) and place CSVs here
+- `data/instacart/` — Parquet versions of the Instacart CSVs (committed, ~118 MB total). Raw CSVs are gitignored; the parquet files are produced with downcast dtypes and zstd-19 compression so the full dataset fits under GitHub's 100 MB per-file limit.
 
 ## Running the Notebooks
 
@@ -30,13 +30,14 @@ jupyter nbconvert --to notebook --execute notebooks/project_checkpoint_2.ipynb
 
 ## Key Dependencies
 
-- `pandas`, `numpy`, `matplotlib`, `scipy`
-- `mlxtend` — FP-Growth and association rule mining (`mlxtend.frequent_patterns.fpgrowth`, `association_rules`)
+- `pandas`, `numpy`, `matplotlib`, `seaborn`, `scipy`, `scikit-learn`
+- `pyarrow` — required to read the committed parquet files
+- `mlxtend` — FP-Growth and association rule mining
 - `prefixspan` — Sequential pattern mining (auto-installed by the notebook if missing)
 
 Install all at once:
 ```bash
-pip install pandas numpy matplotlib scipy mlxtend prefixspan
+pip install pandas numpy matplotlib seaborn scipy scikit-learn pyarrow mlxtend prefixspan
 ```
 
 ## Research Questions
@@ -47,7 +48,7 @@ pip install pandas numpy matplotlib scipy mlxtend prefixspan
 
 ## Data Loading Convention
 
-Notebooks load data from `../data/` relative to the `notebooks/` directory. The main files used are `orders.csv`, `order_products__train.csv`, `order_products__prior.csv`, and `products.csv`.
+Notebooks load parquet from `../data/instacart/` relative to `notebooks/`. Main files: `orders.parquet`, `order_products__prior.parquet`, `products.parquet`, `aisles.parquet`, `departments.parquet`. Use `pd.read_parquet(...)` — requires `pyarrow`.
 
 ## Upcoming Milestones
 
