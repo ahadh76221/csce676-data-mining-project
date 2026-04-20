@@ -6,9 +6,11 @@
 ## Project Overview
 
 This project analyzes the Instacart Online Grocery Shopping Dataset to:
-1. Discover frequent itemsets and association rules (course technique)
-2. Mine sequential purchase patterns across user order histories (beyond-course technique)
-3. Compare insights from unordered vs. sequential pattern mining
+1. Discover frequent itemsets and association rules with FP-Growth (course technique)
+2. Study how temporal segments (weekend/weekday, morning/evening) shape discovered rules
+3. Mine sequential purchase patterns across user order histories with PrefixSpan (beyond-course technique)
+4. Cluster users by purchase behavior with K-Means and mine cluster-specific rules
+5. Compare insights from unordered vs. sequential pattern mining
 
 ## Dataset
 
@@ -32,13 +34,21 @@ This project analyzes the Instacart Online Grocery Shopping Dataset to:
 
 ```
 ├── README.md
+├── CLAUDE.md
 ├── notebooks/
-│   ├── checkpoint_1.ipynb   # Dataset selection and EDA
-│   └── checkpoint_2.ipynb   # Research question formation
-├── src/                     # Source code (future checkpoints)
-├── data/                    # Local data (gitignored)
+│   ├── project_checkpoint_1.ipynb   # Dataset selection and EDA
+│   ├── project_checkpoint_2.ipynb   # Research question formation + FP-Growth/PrefixSpan pilots
+│   └── project_final.ipynb          # Main deliverable: all four RQs end-to-end
+├── data/
+│   └── instacart/                   # Parquet versions of the Instacart CSVs (committed, ~118 MB)
 └── .gitignore
 ```
+
+## Methods
+
+- **FP-Growth** (`pyfim` in the final notebook, `mlxtend` in the checkpoint pilot) for frequent itemsets and association rules
+- **PrefixSpan** (`prefixspan`) for sequential pattern mining across user order histories
+- **K-Means** (`scikit-learn`) for user clustering in RQ4, followed by cluster-specific FP-Growth
 
 ## License
 
