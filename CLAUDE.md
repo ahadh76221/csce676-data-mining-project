@@ -4,12 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a data mining semester project for CSCE 676 at Texas A&M University (Spring 2026). The project analyzes the **Instacart Online Grocery Shopping Dataset 2017** (~3.4M orders, ~32M order-product lines, ~50K products) to:
+This is a data mining semester project for CSCE 676 at Texas A&M University (Spring 2026). The final deliverable notebook is titled **"Shopper Archetypes: Testing the Universal-Pattern Assumption in Grocery Recommendation"** and analyzes the **Instacart Online Grocery Shopping Dataset 2017** (~3.4M orders, ~32M order-product lines, ~50K products) to:
 
-1. Discover frequent itemsets and association rules using FP-Growth (`pyfim`)
-2. Mine sequential purchase patterns across user order histories using PrefixSpan (`prefixspan`)
-3. Cluster users by purchase behavior (K-Means) and mine cluster-specific rules
-4. Compare insights from unordered vs. sequential pattern mining
+1. Discover frequent itemsets and association rules with FP-Growth (`mlxtend` + `pyfim`)
+2. Study how temporal segments (weekend/weekday, time-of-day) reshape discovered rules
+3. Mine sequential purchase patterns across user order histories with PrefixSpan (`prefixspan`)
+4. Cluster users with K-Means / GMM / NMF on user×aisle + behavioral features and mine archetype-specific rules
+
+The final notebook runs all four RQs end-to-end, then closes with a Cross-RQ Synthesis, Conclusions, and a Unit Tests section.
 
 ## Repository Structure
 
@@ -17,7 +19,8 @@ All work lives in `notebooks/`. There is no `src/` or test suite yet.
 
 - `notebooks/project_checkpoint_1.ipynb` — Dataset selection and EDA (Instacart chosen over alternatives)
 - `notebooks/project_checkpoint_2.ipynb` — Research questions, FP-Growth pilot (mlxtend), PrefixSpan pilot, unit tests
-- `notebooks/project_final.ipynb` — Main deliverable: all four RQs end-to-end (FP-Growth via PyFIM, PrefixSpan, K-Means clustering)
+- `notebooks/project_final.ipynb` — Main deliverable: all four RQs end-to-end (FP-Growth via `mlxtend` + `pyfim`, PrefixSpan, K-Means / GMM / NMF clustering)
+- `video/` — 2-minute pitch deliverable: `Grocery Recommendations Are Not Universal.mp4`, `shopper_archetypes_pitch.pptx`, `video_script.md`
 - `data/instacart/` — Parquet versions of the Instacart CSVs (committed, ~118 MB total). Raw CSVs are gitignored; the parquet files are produced with downcast dtypes and zstd-19 compression so the full dataset fits under GitHub's 100 MB per-file limit.
 
 ## Running the Notebooks
@@ -32,15 +35,16 @@ jupyter nbconvert --to notebook --execute notebooks/project_checkpoint_2.ipynb
 
 ## Key Dependencies
 
-- `pandas`, `numpy`, `matplotlib`, `seaborn`, `scipy`, `scikit-learn` (K-Means is load-bearing for RQ4)
+- `pandas`, `numpy`, `matplotlib`, `seaborn`, `scipy`, `scikit-learn` (`KMeans`, `GaussianMixture`, and `NMF` are all load-bearing for RQ4's algorithm sweep)
 - `pyarrow` — required to read the committed parquet files
-- `pyfim` — FP-Growth and association rule mining in the final notebook (~100× faster than mlxtend)
-- `mlxtend` — still used by `project_checkpoint_2.ipynb` for the FP-Growth pilot
-- `prefixspan` — Sequential pattern mining (auto-installed by the notebook if missing)
+- `mlxtend` — `fpgrowth` + `association_rules` for rule generation, small/segmented runs (RQ2 temporal slices, RQ4 per-archetype rules), and the FP-Growth pilot in `project_checkpoint_2.ipynb`
+- `pyfim` — C-backed FP-Growth (~100× faster than mlxtend) used for the full 3.2M-basket department sweeps in RQ1/RQ3; auto-installed by the final notebook if missing
+- `prefixspan` — Sequential pattern mining for RQ3; auto-installed by the final notebook if missing
+- `tqdm`, `joblib` — progress bars and parallelization in the final notebook
 
-Install all at once:
+Manual install (optional — `pyfim` and `prefixspan` bootstrap themselves at runtime via `subprocess.check_call`):
 ```bash
-pip install pandas numpy matplotlib seaborn scipy scikit-learn pyarrow pyfim mlxtend prefixspan
+pip install pandas numpy matplotlib seaborn scipy scikit-learn pyarrow mlxtend pyfim prefixspan tqdm joblib
 ```
 
 ## Research Questions
@@ -54,7 +58,7 @@ pip install pandas numpy matplotlib seaborn scipy scikit-learn pyarrow pyfim mlx
 
 Notebooks load parquet from `../data/instacart/` relative to `notebooks/`. Main files: `orders.parquet`, `order_products__prior.parquet`, `order_products__train.parquet`, `products.parquet`, `aisles.parquet`, `departments.parquet`. Use `pd.read_parquet(...)` — requires `pyarrow`.
 
-## Upcoming Milestones
+## Milestones
 
-- **Checkpoint 4 — Project Showcase**: Apr 21, 2026
-- **Checkpoint 5 — Final Deliverable**: Apr 27, 2026
+- **Checkpoint 4 — Project Showcase**: Apr 21, 2026 — slides (`video/shopper_archetypes_pitch.pptx`), 2-minute pitch video (`video/Grocery Recommendations Are Not Universal.mp4`), and the final notebook are all committed
+- **Checkpoint 5 — Final Deliverable**: Apr 27, 2026 — remaining
