@@ -5,7 +5,7 @@
 
 > 👉 **Start here:** [`notebooks/main_notebook.ipynb`](notebooks/main_notebook.ipynb) — the curated end-to-end deliverable with all four research questions, results, and conclusions.
 
-> 🎥 **2-minute pitch video:** [`Grocery Recommendations Are Not Universal.mp4`](video/Grocery%20Recommendations%20Are%20Not%20Universal.mp4) · slides: [`shopper_archetypes_pitch.pptx`](video/shopper_archetypes_pitch.pptx) · narration script: [`video_script.md`](video/video_script.md)
+> 🎥 **2-minute pitch video:** https://www.youtube.com/watch?v=tsGcIjvFSsA
 
 ## 📖 Overview
 
