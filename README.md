@@ -7,6 +7,8 @@
 
 > 🎥 **2-minute pitch video:** https://www.youtube.com/watch?v=tsGcIjvFSsA
 
+> 📄 **PDF report:** [`report/Shopper_Archetypes_CSCE676_Final_Report.pdf`](report/Shopper_Archetypes_CSCE676_Final_Report.pdf) — the full notebook rendered as a 49-page report (cover, contents, figures, unit tests).
+
 ## 📖 Overview
 
 Every major online grocery platform — Instacart, DoorDash, Walmart — answers the same question every time a customer adds something to their cart: *what are you going to add next?* The industry answers this by mining millions of baskets for "what people buy together" patterns and serving those patterns to everyone.
@@ -56,7 +58,7 @@ This project was developed and last run end-to-end in **Google Colab** on **Pyth
 3. **Open the main notebook:** [`notebooks/main_notebook.ipynb`](notebooks/main_notebook.ipynb)
 4. **Run all cells top-to-bottom.** End-to-end runtime is roughly **30–45 minutes** on a Colab CPU runtime. The committed parquet under `data/instacart/` is loaded automatically; no Kaggle download is required.
 
-The two checkpoint notebooks under [`checkpoints/`](checkpoints/) are committed as historical artifacts of the project's progression — not the primary grading target.
+The two checkpoint notebooks under [`notebooks/checkpoints/`](notebooks/checkpoints/) are committed as historical artifacts of the project's progression — not the primary grading target.
 
 ## 📦 Key dependencies
 
@@ -82,10 +84,12 @@ The full pinned dependency list (670 packages from the Colab session) lives in [
 ```
 .
 ├── notebooks/
-│   └── main_notebook.ipynb              # 👈 Start here — the curated final deliverable
-├── checkpoints/
-│   ├── checkpoint_1.ipynb               # Dataset comparison + EDA (Instacart chosen)
-│   └── checkpoint_2.ipynb               # RQ formation + FP-Growth/PrefixSpan pilots
+│   ├── main_notebook.ipynb              # 👈 Start here — the curated final deliverable
+│   └── checkpoints/
+│       ├── checkpoint_1.ipynb           # Dataset comparison + EDA (Instacart chosen)
+│       └── checkpoint_2.ipynb           # RQ formation + FP-Growth/PrefixSpan pilots
+├── report/
+│   └── Shopper_Archetypes_CSCE676_Final_Report.pdf   # Print-ready PDF of the notebook
 ├── data/
 │   └── instacart/                       # Parquet versions of Instacart CSVs (committed, ~118 MB)
 ├── video/
